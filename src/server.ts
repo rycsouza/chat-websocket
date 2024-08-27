@@ -40,7 +40,7 @@ class App {
 
     setupRoutes(){
         this.app.get('/', (_req, res) => {
-            res.sendFile(`${__dirname}/index.html`)
+            res.sendFile(`../src/index.html`)
         })
     }
 }
