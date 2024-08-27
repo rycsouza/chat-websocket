@@ -1,8 +1,8 @@
+import dotenv from "dotenv";
 import express, { Application } from "express";
 import http from "http";
-import { Server } from "socket.io";
-import dotenv from "dotenv";
 import path from "path";
+import { Server } from "socket.io";
 
 const ENV = dotenv.config().parsed;
 
@@ -42,9 +42,11 @@ class App {
 
   setupRoutes() {
     this.app.get("/chat", (_req, res) => {
+      console.log("CHAT: ", __dirname);
       res.sendFile("index.html", { root: path.join("./", "src") });
     });
     this.app.get("/", (_req, res) => {
+      console.log("TESTE");
       res.send({ success: true });
     });
   }

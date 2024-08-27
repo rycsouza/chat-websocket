@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
-const socket_io_1 = require("socket.io");
-const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
+const socket_io_1 = require("socket.io");
 const ENV = dotenv_1.default.config().parsed;
 class App {
     constructor() {
@@ -34,9 +34,11 @@ class App {
     }
     setupRoutes() {
         this.app.get("/chat", (_req, res) => {
+            console.log("CHAT: ", __dirname);
             res.sendFile("index.html", { root: path_1.default.join("./", "src") });
         });
         this.app.get("/", (_req, res) => {
+            console.log("TESTE");
             res.send({ success: true });
         });
     }
