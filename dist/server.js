@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
 const socket_io_1 = require("socket.io");
 const dotenv_1 = __importDefault(require("dotenv"));
+const path_1 = __importDefault(require("path"));
 const ENV = dotenv_1.default.config().parsed;
 class App {
     constructor() {
@@ -17,23 +18,25 @@ class App {
         this.setupRoutes();
     }
     listenServer() {
-        this.http.listen(ENV.PORT, () => console.log('Servidor Rodando => http://localhost:3000'));
+        this.http.listen(ENV.PORT, () => console.log("Servidor Rodando => http://localhost:3000"));
     }
     listenSocket() {
-        this.io.on('connection', (socket) => {
+        this.io.on("connection", (socket) => {
             console.log(socket.id);
-            socket.on('register', (user) => {
+            socket.on("register", (user) => {
                 socket.userId = user;
                 console.log(`Usuário Registrado: ${user}`);
             });
-            socket.on('message', (msg) => {
-                this.io.emit('message', (`${socket.userId}: ${msg}`));
+            socket.on("message", (msg) => {
+                this.io.emit("message", `${socket.userId}: ${msg}`);
             });
         });
     }
     setupRoutes() {
-        this.app.get('/', (_req, res) => {
-            res.sendFile(`../src/index.html`);
+        this.app.get("/", (_req, res) => {
+            res.sendFile("index.html", {
+                root: path_1.default.join("src"),
+            });
         });
     }
 }
