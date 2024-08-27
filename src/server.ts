@@ -42,9 +42,7 @@ class App {
 
   setupRoutes() {
     this.app.get("/", (_req, res) => {
-      res.sendFile("index.html", {
-        root: path.join("src"),
-      });
+      res.sendFile("index.html", { root: path.join("./", "src") });
     });
   }
 }
