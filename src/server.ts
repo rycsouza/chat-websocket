@@ -19,7 +19,7 @@ class App {
     }
 
     listenServer(){
-        this.http.listen(ENV!.PORT, () => console.log('Servidor Rodando => http://localhost:3000/chat'))
+        this.http.listen(ENV!.PORT, () => console.log('Servidor Rodando => http://localhost:3000'))
     }
 
     listenSocket(){
@@ -39,7 +39,7 @@ class App {
     }
 
     setupRoutes(){
-        this.app.get('/chat', (req, res) => {
+        this.app.get('/', (_req, res) => {
             res.sendFile(`${__dirname}/index.html`)
         })
     }
