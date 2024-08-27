@@ -33,8 +33,11 @@ class App {
         });
     }
     setupRoutes() {
-        this.app.get("/", (_req, res) => {
+        this.app.get("/chat", (_req, res) => {
             res.sendFile("index.html", { root: path_1.default.join("./", "src") });
+        });
+        this.app.get("/", (_req, res) => {
+            res.send({ success: true });
         });
     }
 }
