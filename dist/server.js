@@ -9,6 +9,11 @@ const http_1 = __importDefault(require("http"));
 const path_1 = __importDefault(require("path"));
 const socket_io_1 = require("socket.io");
 const ENV = dotenv_1.default.config().parsed;
+const isProduction = ENV.NODE_ENV === "production";
+// Define o caminho do index.html dependendo do ambiente
+const filePath = isProduction
+    ? path_1.default.join(__dirname, "../src", "index.html")
+    : path_1.default.join(__dirname, "src", "index.html");
 class App {
     constructor() {
         this.app = (0, express_1.default)();
@@ -34,8 +39,7 @@ class App {
     }
     setupRoutes() {
         this.app.get("/chat", (_req, res) => {
-            console.log("CHAT: ", __dirname);
-            res.sendFile("index.html", { root: path_1.default.join("../", "src") });
+            res.sendFile(filePath);
         });
         this.app.get("/", (_req, res) => {
             console.log("TESTE");

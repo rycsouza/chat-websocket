@@ -5,6 +5,12 @@ import path from "path";
 import { Server } from "socket.io";
 
 const ENV = dotenv.config().parsed;
+const isProduction = ENV.NODE_ENV === "production";
+
+// Define o caminho do index.html dependendo do ambiente
+const filePath = isProduction
+  ? path.join(__dirname, "../src", "index.html")
+  : path.join(__dirname, "src", "index.html");
 
 class App {
   private app: Application;
@@ -42,8 +48,7 @@ class App {
 
   setupRoutes() {
     this.app.get("/chat", (_req, res) => {
-      console.log("CHAT: ", __dirname);
-      res.sendFile("index.html", { root: path.join("../", "src") });
+      res.sendFile(filePath);
     });
     this.app.get("/", (_req, res) => {
       console.log("TESTE");
