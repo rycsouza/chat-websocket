@@ -48,10 +48,10 @@ class App {
 
   setupRoutes() {
     this.app.get("/chat", (_req, res) => {
+      console.log(`${ENV.NODE_ENV} | ${filePath}`);
       res.sendFile(filePath);
     });
     this.app.get("/", (_req, res) => {
-      console.log("TESTE");
       res.send({ success: true });
     });
   }
