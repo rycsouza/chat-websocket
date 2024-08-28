@@ -35,7 +35,7 @@ class App {
     setupRoutes() {
         this.app.get("/chat", (_req, res) => {
             console.log("CHAT: ", __dirname);
-            res.sendFile("index.html", { root: path_1.default.join("./", "src") });
+            res.sendFile("index.html", { root: path_1.default.join("../", "src") });
         });
         this.app.get("/", (_req, res) => {
             console.log("TESTE");
