@@ -11,9 +11,7 @@ const socket_io_1 = require("socket.io");
 const ENV = dotenv_1.default.config().parsed;
 const isProduction = ENV.NODE_ENV === "production";
 // Define o caminho do index.html dependendo do ambiente
-const filePath = isProduction
-    ? path_1.default.join(__dirname, "../src", "index.html")
-    : path_1.default.join(__dirname, "src", "index.html");
+const filePath = path_1.default.join(__dirname, "../src", "index.html");
 class App {
     constructor() {
         this.app = (0, express_1.default)();

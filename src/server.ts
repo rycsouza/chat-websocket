@@ -8,9 +8,7 @@ const ENV = dotenv.config().parsed;
 const isProduction = ENV.NODE_ENV === "production";
 
 // Define o caminho do index.html dependendo do ambiente
-const filePath = isProduction
-  ? path.join(__dirname, "../src", "index.html")
-  : path.join(__dirname, "src", "index.html");
+const filePath = path.join(__dirname, "../src", "index.html");
 
 class App {
   private app: Application;
